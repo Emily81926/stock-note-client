@@ -7,9 +7,32 @@ class StockList extends React.Component {
     this.props.fetchStocks()
   }
 
-  render() {
-    return <div> StockList</div>
+  renderList(){
+    return this.props.stocks.map(stock => {
+      return(
+        <div className="ui cards item" key={stock.id}>
+          <div className="card">
+            <div className="content">
+              <div className="header">{stock.companyName}</div>
+              <div className="meta">{stock.sector}</div>
+              <div className="description">
+                {stock.price}
+              </div>
+            </div>
+          </div>
+      </div>
+      );
+    });
   }
+
+  render() {
+    return <div> {this.renderList()}</div>
+  }
+ 
 }
 
-export default connect(null, { fetchStocks })(StockList);
+const mapStateToProps = state => {
+  return { stocks: state.stocks }
+}
+
+export default connect( mapStateToProps, { fetchStocks })(StockList);

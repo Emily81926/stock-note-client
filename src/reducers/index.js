@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
+import stocksReducer from "./stocksReducer";
 
 export default combineReducers({
-  replaceMe: () => 'hi there'
-})
+  stocks: stocksReducer
+});
