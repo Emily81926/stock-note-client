@@ -1,7 +1,15 @@
 import React from "react";
+import { connect } from 'react-redux'
+import { fetchStocks } from '../../actions'
 
-const StockList = () => {
-  return <div> StockList</div>
-};
+class StockList extends React.Component {
+  componentDidMount(){
+    this.props.fetchStocks()
+  }
 
-export default StockList;
+  render() {
+    return <div> StockList</div>
+  }
+}
+
+export default connect(null, { fetchStocks })(StockList);
