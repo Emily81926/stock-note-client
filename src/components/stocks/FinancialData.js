@@ -2,19 +2,24 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchFreeCashFlow, fetchDividends, fetchEarninPerShare, fetchROEInterestCoverageNetMargin } from "../../actions/getStock"
 
+
 class FiancialData extends React.Component {
   componentDidMount() {
-    //需要思考如何同時放入不同的props
-    this.props.fetchROEInterestCoverageNetMargin();
-    this.props.fetchFreeCashFlow();
-    this.props.fetchDividends();
-    this.props.fetchEarninPerShare()
+    //從parent component StockDetail取得資料
+    let symbol = this.props.symbol
+    this.props.fetchFreeCashFlow(symbol);
+    this.props.fetchDividends(symbol);
+    this.props.fetchEarninPerShare(symbol);
+    this.props.fetchROEInterestCoverageNetMargin(symbol);
+    
   }
 
   //還未修改內容
   renderTable() {
+
+    if(!this.props.data){return null}
     return (
-      <table className="ui fixed single line celled table">
+      <table className="ui fixed single line celled table" key={this.props.data.symbol}>
         <thead>
           <tr><th>Name</th>
             <th>Status</th>
@@ -41,13 +46,17 @@ class FiancialData extends React.Component {
     )
   }
 
-  
+
   render() {
     return <div>{this.renderTable()}</div>
   }
 };
 
 //需要再加mapStateToProp的function
-
+const mapStateToProps = (state) => {
+  console.log(state)
+  return { data: state.stocks[0] }
+  
+}
 //需要思考如何同時放入不同的props
-export default connect(null, { fetchFreeCashFlow, fetchDividends,fetchEarninPerShare,fetchROEInterestCoverageNetMargin })(FiancialData);
+export default connect(mapStateToProps, { fetchFreeCashFlow, fetchDividends, fetchEarninPerShare,fetchROEInterestCoverageNetMargin })(FiancialData);
