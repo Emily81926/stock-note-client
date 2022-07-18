@@ -8,7 +8,7 @@ const composeEnhancement = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compos
 
 export default configureStore({
   reducer: combineReducers,
-  applyMiddleware: applyMiddleware(thunk),
+  applyMiddleware: composeEnhancement(applyMiddleware(thunk)),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
