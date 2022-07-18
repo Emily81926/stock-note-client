@@ -8,17 +8,18 @@ import UserSignup from './users/Usersignup';
 import Header from './Header'
 
 
+
 const App = () => {
   return (
   <div className='ui container'>
-    <BrowserRouter>
+      <BrowserRouter >
         <Header/>
         <Route path="/" exact component={StockList}/>
-        <Route path="/stocks/show" exact component={StockDetail} />
+        <Route path="/stocks/:symbol" exact component={StockDetail} />
         <Route path="/stocks/watchlist" exact component={StockWatchlist} />
         <Route path="/signin" exact component={UserSignin} />
         <Route path="/signup" exact component={UserSignup} />
-    </BrowserRouter>
+      </BrowserRouter>
     </div>
     ); 
 };

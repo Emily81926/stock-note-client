@@ -1,5 +1,5 @@
 import stockApis from "../apis/stockApis";
-import { FETCH_STOCKS, FETCH_STOCK } from './types'
+import { FETCH_STOCKS } from './types'
 
 
 export const fetchStocks = () => async dispatch => {
@@ -7,10 +7,3 @@ export const fetchStocks = () => async dispatch => {
 
   dispatch({ type: FETCH_STOCKS, payload: response.data })
 };
-
-
-export const fetchStock = () => async dispatch => {
-  
-
-  dispatch({ type: FETCH_STOCK, payload:[]})
-}
