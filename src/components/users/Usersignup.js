@@ -1,5 +1,7 @@
 import React from "react";
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { signUp } from '../../actions/index'
 
 class UserSignup extends React.Component {
   renderError({ error, touched }) {
@@ -23,8 +25,8 @@ class UserSignup extends React.Component {
     );
   }
 
-  onSubmit(formValues) {
-    console.log(formValues)
+  onSubmit = formValues => {
+    this.props.signUp(formValues)
   }
 
   render() {
@@ -63,7 +65,10 @@ const validate = formValues => {
   }
 }
 
-export default reduxForm({
+const formWrapped = reduxForm({
   form: 'userSignup',
   validate: validate
 })(UserSignup);
+
+
+export default connect(null, {signUp})(formWrapped)

@@ -7,6 +7,7 @@ import epsReducer from "./stockReducers/epsReducer";
 import freeCashReducer from "./stockReducers/freeCashReducer";
 import otherThreeDataReducer from "./stockReducers/otherThreeDataReducer";
 import indicatorReducer from "./stockReducers/indicatorReducer";
+import userReducer from "./userReducer";
 
 export default combineReducers({
   stocks: stocksReducer,
@@ -17,4 +18,5 @@ export default combineReducers({
   others:  otherThreeDataReducer,
   indicator: indicatorReducer,
   form: formReducer, //前面一定要寫form
+  user: userReducer,
 });
