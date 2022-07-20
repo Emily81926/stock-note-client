@@ -4,7 +4,7 @@ import { FETCH_EARNING_PER_SHARE } from '../../actions/types'
 export default (state = [], action) => {
   switch (action.type) {
     case FETCH_EARNING_PER_SHARE:
-      return action.payload;
+      return action.payload[0];
     default:
       return state;
   }

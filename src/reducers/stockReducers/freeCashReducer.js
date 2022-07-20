@@ -5,7 +5,7 @@ export default (state = [], action) => {
   switch (action.type) {
     
     case FETCH_FREE_CASH_FLOW:
-      return action.payload;
+      return action.payload[0];
     default:
       return state;
   }

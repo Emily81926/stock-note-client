@@ -16,10 +16,10 @@ class FiancialData extends React.Component {
 
   //還未修改內容
   renderTable() {
-
-    if(!this.props.data){return null}
+    console.log(this.props)
+   const data = this.props.data
     return (
-      <table className="ui fixed single line celled table" key={this.props.data.symbol}>
+      <table className="ui fixed single line celled table" key={this.props.symbol}>
         <thead>
           <tr><th>Name</th>
             <th>Status</th>
@@ -27,14 +27,14 @@ class FiancialData extends React.Component {
           </tr></thead>
         <tbody>
           <tr>
-            <td>John</td>
-            <td>Approved</td>
-            <td title="This is much too long to fit I'm sorry about that">This is much too long to fit I'm sorry about that</td>
+            <td>{data.dividends}</td>
+            <td>{data.earningspersharebasic}</td>
+            <td >{data.freeCashFlow}</td>
           </tr>
           <tr>
-            <td>Jamie</td>
-            <td>Approved</td>
-            <td>Shorter description</td>
+            <td>{data.returnOnEquity}</td>
+            <td>{data.interestCoverage}</td>
+            <td>{data.netProfitMargin}</td>
           </tr>
           <tr>
             <td>Jill</td>
@@ -54,9 +54,12 @@ class FiancialData extends React.Component {
 
 //需要再加mapStateToProp的function
 const mapStateToProps = (state) => {
-  console.log(state)
-  return { data: state.stocks[0] }
+  const data = { ...state.dividends, ...state.eps, ...state.freeCashFlow, ...state.others }
+  //但是props.data裡面的資料還是太多了
+  return { data }
   
 }
 //需要思考如何同時放入不同的props
 export default connect(mapStateToProps, { fetchFreeCashFlow, fetchDividends, fetchEarninPerShare,fetchROEInterestCoverageNetMargin })(FiancialData);
+
+//需要在reducer上面寫邏輯

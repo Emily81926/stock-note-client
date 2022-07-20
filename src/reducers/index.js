@@ -12,7 +12,7 @@ export default combineReducers({
   profile: profileReducer,
   dividends: dividendsReducer,
   eps: epsReducer,
-  freeCashFlow: freeCashReducer,
-  data: otherThreeDataReducer,
+  freeCashFlow: freeCashReducer, 
+  others:  otherThreeDataReducer,
   indicator: indicatorReducer
 });

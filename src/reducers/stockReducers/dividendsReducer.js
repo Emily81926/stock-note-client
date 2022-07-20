@@ -4,7 +4,7 @@ import { FETCH_DIVIDENDS } from '../../actions/types'
 export default (state = [], action) => {
   switch (action.type) {
     case FETCH_DIVIDENDS:
-      return action.payload;
+      return action.payload[0];
     default:
       return state;
   }
