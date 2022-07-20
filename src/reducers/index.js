@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { reducer as formReducer} from "redux-form";
 import stocksReducer from "./stockReducers/stocksReducer";
 import profileReducer from "./stockReducers/profileReducer";
 import dividendsReducer from "./stockReducers/dividendsReducer";
@@ -14,5 +15,6 @@ export default combineReducers({
   eps: epsReducer,
   freeCashFlow: freeCashReducer, 
   others:  otherThreeDataReducer,
-  indicator: indicatorReducer
+  indicator: indicatorReducer,
+  form: formReducer, //前面一定要寫form
 });
