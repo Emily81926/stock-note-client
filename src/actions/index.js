@@ -1,6 +1,6 @@
 import stockApis from "../apis/stockApis";
 import users from "../apis/users";
-import { FETCH_STOCKS, SIGN_UP } from './types'
+import { FETCH_STOCKS, SUCCESS_STATUS } from './types'
 
 
 export const fetchStocks = () => async dispatch => {
@@ -11,7 +11,8 @@ export const fetchStocks = () => async dispatch => {
 
 
 export const signUp = formValues => async dispatch => {
-  const response = await users.post('/users', formValues);
+  const response = await users.post('/api/user/signup', formValues);
 
-  dispatch({ type: SIGN_UP, payload: response.data })
+  dispatch({ type: SUCCESS_STATUS, payload: response.data })
 }
+

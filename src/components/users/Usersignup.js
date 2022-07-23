@@ -32,7 +32,7 @@ class UserSignup extends React.Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error" >
-        <Field name="username" component={this.renderInput} label="Enter Username" />
+        <Field name="name" component={this.renderInput} label="Enter Username" />
         <Field name="email" component={this.renderInput} label="Enter Email" />
         <Field name="password" component={this.renderInput} label="Enter Password" />
         <Field name="confirmedPassword" component={this.renderInput} label="Enter Confirmed Password" />
@@ -46,8 +46,8 @@ class UserSignup extends React.Component {
 
 const validate = formValues => {
   const errors = {}
-  if (!formValues.username) {
-    errors.username = 'Please enter a username'
+  if (!formValues.name) {
+    errors.name = 'Please enter a username'
   }
 
   if (!formValues.email) {
@@ -60,9 +60,9 @@ const validate = formValues => {
 
   if (!formValues.confirmedPassword) {
     errors.confirmedPassword = 'Please enter a confirmed password'
+  }
 
     return errors
-  }
 }
 
 const formWrapped = reduxForm({
