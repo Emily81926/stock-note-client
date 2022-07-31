@@ -16,8 +16,7 @@ class StockDetail extends React.Component {
   //需修改裡面的內容
   renderProfile() {
     const stockProfile = this.props.stock
-    if (!stockProfile) { return null; }
-    console.log(this.props)
+    if (!stockProfile) { return <h1>Loading</h1>; }
 
     return (
       <div className="ui card" key={stockProfile.symbol}>
@@ -59,7 +58,8 @@ class StockDetail extends React.Component {
 
   render() {
     return (
-      <div>{this.renderProfile()}
+      <div>
+        {this.renderProfile()}
         <FinancialData symbol={this.passSymbol()}/>
       </div>
 

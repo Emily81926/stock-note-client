@@ -4,7 +4,14 @@ import { FETCH_EARNING_PER_SHARE } from '../../actions/types'
 export default (state = [], action) => {
   switch (action.type) {
     case FETCH_EARNING_PER_SHARE:
-      return action.payload[0];
+      const eps = action.payload.map(eps => {
+        let newObj = {};
+        newObj["date"] = eps.date;
+        newObj["symbol"] = eps.symbol;
+        newObj["eps"] = eps.earningspersharebasic;
+        return newObj
+      });
+      return eps;
     default:
       return state;
   }

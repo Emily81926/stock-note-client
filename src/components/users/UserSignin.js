@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import FacebookAuth from "./FacebookAuth";
 import GoogleAuth from "./GoogleAuth";
 
 class UserSignin extends React.Component {
@@ -10,7 +9,6 @@ class UserSignin extends React.Component {
         <Link to="/" className="button">
           Sign in with Facebook
         </Link>
-        <FacebookAuth />
         <GoogleAuth/>
       </div>
     )

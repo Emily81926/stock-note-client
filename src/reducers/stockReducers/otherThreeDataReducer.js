@@ -1,11 +1,19 @@
-import {  FETCH_ROE_INTERESTCOVERAGE_NETMARGIN } from '../../actions/types'
+import { FETCH_ROE_INTERESTCOVERAGE_NETMARGIN } from '../../actions/types'
 
 // eslint-disable-next-line 
-export default (state = [], action) => {
+export default (state = {}, action) => {
   switch (action.type) {
-   
     case FETCH_ROE_INTERESTCOVERAGE_NETMARGIN:
-      return action.payload[0];
+      const others = action.payload.map(other => {
+        let newObj = {};
+        newObj["date"] = other.date;
+        newObj["symbol"] = other.symbol;
+        newObj["returnOnEquity"] = other.returnOnEquity;
+        newObj["interestCoverage"] = other.interestCoverage;
+        newObj["netMargin"] = other.netProfitMargin;
+        return newObj
+      });
+      return others;
     default:
       return state;
   }

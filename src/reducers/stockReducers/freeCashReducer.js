@@ -3,9 +3,15 @@ import { FETCH_FREE_CASH_FLOW } from '../../actions/types'
 // eslint-disable-next-line 
 export default (state = [], action) => {
   switch (action.type) {
-    
-    case FETCH_FREE_CASH_FLOW:
-      return action.payload[0];
+     case FETCH_FREE_CASH_FLOW:
+      const CashFlow = action.payload.map(cash => {
+        let newObj = {};
+        newObj["date"] = cash.date;
+        newObj["symbol"] = cash.symbol;
+        newObj["freeCashFlow"] = cash.freeCashFlow;
+        return newObj
+      });
+      return CashFlow;
     default:
       return state;
   }
