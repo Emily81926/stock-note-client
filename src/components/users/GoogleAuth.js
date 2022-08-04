@@ -1,15 +1,26 @@
 import React from 'react'
+import { getGoogleUser } from '../../actions/auth'
 
 class GoogleAuth extends React.Component {
+
   googleLogin = () => {
-    window.open('http://localhost:3001/auth/google')
+    window.open('http://localhost:3001/auth/google', "_self")
+    
   }
+
+  googleSuccess = (res) => {
+    console.log(res)
+  }
+
+
 
   render() {
     return (
-      <button className="loginbutton google" onClick={this.googleLogin}>Google Login</button>
+      <button className="loginbutton google" onClick={this.googleLogin}  >Google Login</button>
     )
   }
 }
+
+
 
 export default GoogleAuth

@@ -7,7 +7,6 @@ class UserSignin extends React.Component {
     return (
       <div className="ui">
         <Link to="/" className="button">
-          Sign in with Facebook
         </Link>
         <GoogleAuth/>
       </div>
