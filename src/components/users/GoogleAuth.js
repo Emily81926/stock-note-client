@@ -8,11 +8,7 @@ class GoogleAuth extends React.Component {
     
   }
 
-  googleSuccess = (res) => {
-    console.log(res)
-  }
-
-
+ 
 
   render() {
     return (

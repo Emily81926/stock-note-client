@@ -36,6 +36,10 @@ const Header = () => {
 
   console.log("finalUser:", user)
 
+  const logout =() => {
+    window.open('http://localhost:3001/auth/logout')
+  }
+
   return (
     <div className="ui secondary pointing menu">
       <Link to="/" className="item">
@@ -44,7 +48,10 @@ const Header = () => {
       <div className="right menu">
         {user ?
           (<div>
-              <p>{user}  logout</p>
+              <p>{user}</p>
+            <p onClick={logout}>
+              logout
+            </p>
             </div>
           ) : (<Link to="/signin">
             signin
