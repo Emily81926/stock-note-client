@@ -1,5 +1,4 @@
 import React from 'react'
-import { getGoogleUser } from '../../actions/auth'
 
 class GoogleAuth extends React.Component {
 

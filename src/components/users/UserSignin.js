@@ -4,8 +4,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import GoogleAuth from "./GoogleAuth";
 import { signIn } from '../../actions/index'
+import { Redirect } from 'react-router-dom'
 
 class UserSignin extends React.Component {
+
+
  
   renderError({ error, touched }) {
     if (touched && error) {
@@ -27,10 +30,9 @@ class UserSignin extends React.Component {
       </div>
     );
   }
-  onSubmit = formValues => {
-    this.props.signIn(formValues)
-    //看看有沒有真的把form的value傳過去
-    console.log(formValues)
+  onSubmit = async(formValues) => {
+    await this.props.signIn(formValues)
+    this.props.history.push('/')  
   }
 
   SigninForm() {
@@ -76,4 +78,10 @@ const formWrapped = reduxForm({
   validate: validate
 })(UserSignin);
 
-export default connect(null, { signIn })(formWrapped)
+const mapStateToProps = state => {
+  console.log("local mapStateToProps", state.user)
+  return { user: state.user }
+
+}
+
+export default connect(mapStateToProps, { signIn })(formWrapped)
