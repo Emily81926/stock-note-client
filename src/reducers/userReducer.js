@@ -1,4 +1,4 @@
-import { SUCCESS_STATUS, GET_GOOGLE_USER } from '../actions/types'
+import { SUCCESS_STATUS, GET_GOOGLE_USER, LOCAL_LOGIN } from '../actions/types'
 
 // eslint-disable-next-line 
 export default (state = {}, action) => {
@@ -6,7 +6,10 @@ export default (state = {}, action) => {
     case SUCCESS_STATUS:
       return {...state, status: action.payload.status, message: action.payload.message};
     case GET_GOOGLE_USER:
-      return action.payload;
+      console.log("google user reducer:", action.payload)
+      return { ...state, currentUser: action.payload };
+    case LOCAL_LOGIN:
+      return {...state, currentUser: action.payload};
     default:
       return state;
   }

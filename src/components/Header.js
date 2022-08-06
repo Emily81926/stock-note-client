@@ -1,66 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import axios from "axios";
+import { getGoogleUser } from '../actions/auth'
 
+class Header extends React.Component {
 
-const Header = () => {
-  const [user, setUser] = useState(null)
+  componentDidMount() {
+    console.log('google componentDidMount')
+    this.props.getGoogleUser()
+  }
 
-  useEffect(() => {
-    const getUser = () => {
-      axios({
-        method: 'GET',
-        url: 'http://localhost:3001/auth/login/success',
-        responseType: 'json',
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Controle-Allow-Credentials": true
-        },
-      })
-        .then((response) => {
-          console.log("first response:", response)
-          console.log("status:", response.request.status)
-          console.log("response.data.user", response.data.user)
-          if (response.request.status === 200) return response.data.user
-          throw new Error("authentication has been failed")
-        }).then(resObject => {
-          setUser(resObject.given_name)
-        }).catch(err => {
-          console.log(err)
-        });
-    };
-    getUser()
-  }, []);
-
-  console.log("finalUser:", user)
-
-  const logout =() => {
+  logout = () => {
     window.open('http://localhost:3001/auth/logout')
   }
 
-  return (
-    <div className="ui secondary pointing menu">
-      <Link to="/" className="item">
-        BOSVA
-      </Link>
-      <div className="right menu">
-        {user ?
-          (<div>
-              <p>{user}</p>
-            <p onClick={logout}>
-              logout
-            </p>
+  render() {
+    return (
+      <div className="ui secondary pointing menu">
+        <Link to="/" className="item">
+          BOSVA
+        </Link>
+        <div className="right menu">
+          {this.props.user.currentUser ?
+            (<div>
+              <p>{this.props.user.currentUser.name}</p>
+              <p onClick={this.logout}>
+                logout
+              </p>
             </div>
-          ) : (<Link to="/signin">
-            signin
-          </Link>)}
+            ) : (<Link to="/signin">
+              signin
+            </Link>)}
 
-
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default Header;
+const mapStateToProps = state => {
+  console.log("google mapStateToProps",state.user)
+  return { user: state.user }
+  
+}
+
+export default connect(mapStateToProps, { getGoogleUser })(Header);
+
+

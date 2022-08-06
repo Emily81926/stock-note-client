@@ -1,6 +1,7 @@
+import { formValues } from "redux-form";
 import stockApis from "../apis/stockApis";
 import users from "../apis/users";
-import { FETCH_STOCKS, SUCCESS_STATUS } from './types'
+import { FETCH_STOCKS, SUCCESS_STATUS, LOCAL_LOGIN } from './types'
 
 
 export const fetchStocks = () => async dispatch => {
@@ -14,5 +15,16 @@ export const signUp = formValues => async dispatch => {
   const response = await users.post('/api/user/signup', formValues);
 
   dispatch({ type: SUCCESS_STATUS, payload: response.data })
+}
+
+export const signIn = formValues => async dispatch => {
+  const response = await users.post('/api/user/signin', formValues);
+  if(response.data.token){
+    localStorage.setItem("token", response.data.token)
+  }
+  
+
+
+  dispatch({ type: LOCAL_LOGIN, payload: response.data})
 }
 
