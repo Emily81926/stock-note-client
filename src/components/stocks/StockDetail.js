@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchStockProfile } from "../../actions/getStock"
 import FinancialData from "./FinancialData";
+import IndicatorData from "./IndicatorData"
 
 class StockDetail extends React.Component {
 
@@ -62,6 +63,7 @@ class StockDetail extends React.Component {
       <div>
         {this.renderProfile()}
         <FinancialData symbol={this.passSymbol()}/>
+        <IndicatorData symbol={this.passSymbol()}/>
       </div>
 
     )

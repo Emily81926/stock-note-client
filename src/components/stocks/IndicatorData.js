@@ -1,45 +1,53 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchIndicatorData } from "../../actions/getStock"
+import { fetchIndicatorData } from "../../actions/getStock";
+import Plot from 'react-plotly.js';
 
 class IndicatorData extends React.Component {
+
   componentDidMount() {
-    this.props.fetchIndicatorData()
+    let symbol = this.props.symbol
+    this.props.fetchIndicatorData(symbol)
   }
 
-  //需修改成其他形式，不是table的形式
-  renderIndicator() {
-    (
-      <table className="ui fixed single line celled table">
-        <thead>
-          <tr><th>Name</th>
-            <th>Status</th>
-            <th>Description</th>
-          </tr></thead>
-        <tbody>
-          <tr>
-            <td>John</td>
-            <td>Approved</td>
-            <td title="This is much too long to fit I'm sorry about that">This is much too long to fit I'm sorry about that</td>
-          </tr>
-          <tr>
-            <td>Jamie</td>
-            <td>Approved</td>
-            <td>Shorter description</td>
-          </tr>
-          <tr>
-            <td>Jill</td>
-            <td>Denied</td>
-            <td>Shorter description</td>
-          </tr>
-        </tbody>
-      </table>
-    )
+  getChartValues = () => {
+    let XValues = []
+    let YValues = []
+    for (let i = 0; i < this.props.indicator.length; i++) {
+      const date = this.props.indicator[i]["date"]
+      const open = this.props.indicator[i]["open"]
+      XValues.push(date)
+      YValues.push(open)
+    }
+
+    return (<Plot
+      data={[
+        {
+          x: XValues,
+          y: YValues,
+          type: 'scatter',
+          mode: 'lines+markers',
+          marker: { color: 'red' },
+        },
+      ]}
+      layout={{ width: 720, height: 440, title: 'Stock Chart' }}
+    />)
+
   }
+
 
   render() {
-    return <div>{this.renderIndicator()}</div>
+    return (
+      <div>
+        {this.getChartValues()}
+      </div>
+    )
+
   }
 };
 
-export default connect(null, { fetchIndicatorData })(IndicatorData);
+const mapStateToProps = (state) => {
+  return { indicator: state.indicator }
+}
+
+export default connect(mapStateToProps, { fetchIndicatorData })(IndicatorData);
