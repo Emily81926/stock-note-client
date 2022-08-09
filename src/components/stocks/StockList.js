@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux'
 import { fetchStocks } from '../../actions'
 import { Link } from "react-router-dom"
+import SearchBar from "./SearchBar"
 
 class StockList extends React.Component {
   componentDidMount() {
@@ -29,7 +30,11 @@ class StockList extends React.Component {
   }
 
   render() {
-    return <div> {this.renderList()}</div>
+    return (
+    <div> 
+      <SearchBar placeholder="Enter company name or symbol name" data={this.props.stocks}/>
+      {this.renderList()}
+      </div>)
   }
 
 }
