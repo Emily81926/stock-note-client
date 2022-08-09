@@ -1,4 +1,4 @@
-import { GET_GOOGLE_USER } from './types';
+import { GET_GOOGLE_USER, LOG_OUT } from './types';
 import axios from "axios";
 
 export const googleLogin = () => async dispatch => {
@@ -25,4 +25,10 @@ export const getGoogleUser = () => async dispatch => {
     console.log('google token:', response.data.user.token )}
 
   dispatch({ type: GET_GOOGLE_USER, payload: response.data.user })
+}
+
+export const logOut = (currentUser) => async dispatch => {
+  localStorage.removeItem("token")
+
+  dispatch({ type: LOG_OUT, payload: currentUser })
 }

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import GoogleAuth from "./GoogleAuth";
 import { signIn } from '../../actions/index'
-import { Redirect } from 'react-router-dom'
 
 class UserSignin extends React.Component {
 

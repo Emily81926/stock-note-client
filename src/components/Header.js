@@ -1,18 +1,22 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { getGoogleUser } from '../actions/auth'
+import { getGoogleUser, logOut } from '../actions/auth'
+import { getCurrentUser} from '../actions/index'
+
 
 class Header extends React.Component {
 
   componentDidMount() {
     console.log('google componentDidMount')
     this.props.getGoogleUser()
+    this.props.getCurrentUser(localStorage.getItem('refreshToken'))
   }
 
   logout = () => {
-    window.open('http://localhost:3001/auth/logout')
+    this.props.logOut(this.props.user)
   }
+
 
   render() {
     return (
@@ -23,14 +27,19 @@ class Header extends React.Component {
         <div className="right menu">
           {this.props.user.currentUser ?
             (<div>
+              <Link to="/watchlist">
+                watchList
+              </Link>
               <p>{this.props.user.currentUser.name}</p>
               <p onClick={this.logout}>
                 logout
               </p>
             </div>
-            ) : (<Link to="/signin">
-              signin
-            </Link>)}
+            )
+            : 
+              (<Link to="/signin">
+                signin
+              </Link>) }
 
         </div>
       </div>
@@ -44,6 +53,6 @@ const mapStateToProps = state => {
   
 }
 
-export default connect(mapStateToProps, { getGoogleUser })(Header);
+export default connect(mapStateToProps, { getGoogleUser, logOut, getCurrentUser })(Header);
 
 

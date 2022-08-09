@@ -16,8 +16,8 @@ const App = () => {
       <BrowserRouter >
         <Header/>
         <Route path="/" exact component={StockList}/>
+        <Route path="/watchlist" exact component={StockWatchlist} />
         <Route path="/stocks/:symbol" exact component={StockDetail} />
-        <Route path="/stocks/watchlist" exact component={StockWatchlist} />
         <Route path="/signin" exact component={UserSignin} />
         <Route path="/signup" exact component={UserSignup} />
       </BrowserRouter>

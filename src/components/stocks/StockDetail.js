@@ -4,7 +4,7 @@ import { fetchStockProfile } from "../../actions/getStock"
 import FinancialData from "./FinancialData";
 
 class StockDetail extends React.Component {
-  
+
   componentDidMount() {
     this.props.fetchStockProfile(this.props.match.params.symbol)
   }
@@ -15,8 +15,9 @@ class StockDetail extends React.Component {
   }
   //需修改裡面的內容
   renderProfile() {
+
     const stockProfile = this.props.stock
-    if (!stockProfile) { return <h1>Loading</h1>; }
+    if (!stockProfile  ) { return <h1>Loading</h1>; }
 
     return (
       <div className="ui card" key={stockProfile.symbol}>
