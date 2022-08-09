@@ -16,7 +16,7 @@ export default (state = {}, action) => {
       case GET_CURRENT_USER:
         return {...state, currentUser: action.payload}
       case LOG_OUT:
-      return { logout: true } //可以再思考，要不要統一一個格式例如：currentUser: { isLoggedin: false, name: '', email: '', token: ''.....}
+      return { isLoggedin: false, message: action.payload } //可以再思考，要不要統一一個格式例如：currentUser: { isLoggedin: false, name: '', email: '', token: ''.....}
     default:
       return state;
   }

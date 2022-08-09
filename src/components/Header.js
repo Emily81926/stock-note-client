@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { getGoogleUser, logOut } from '../actions/auth'
-import { getCurrentUser} from '../actions/index'
+import { getGoogleUser } from '../actions/auth'
+import { getCurrentUser, logOut} from '../actions/index'
 
 
 class Header extends React.Component {
@@ -14,7 +14,10 @@ class Header extends React.Component {
   }
 
   logout = () => {
-    this.props.logOut(this.props.user)
+    const accessToken = localStorage.getItem('accessToken')
+    const refreshToken = localStorage.getItem('refreshToken')
+  
+    this.props.logOut(accessToken, { token: refreshToken } )
   }
 
 
@@ -31,9 +34,9 @@ class Header extends React.Component {
                 watchList
               </Link>
               <p>{this.props.user.currentUser.name}</p>
-              <p onClick={this.logout}>
+              <button onClick={this.logout}>
                 logout
-              </p>
+              </button>
             </div>
             )
             : 

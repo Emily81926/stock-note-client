@@ -1,6 +1,6 @@
 import stockApis from "../apis/stockApis";
 import users from "../apis/users";
-import { FETCH_STOCKS, SUCCESS_STATUS, LOCAL_LOGIN, REFRESH_TOKEN, GET_CURRENT_USER } from './types'
+import { FETCH_STOCKS, SUCCESS_STATUS, LOCAL_LOGIN, REFRESH_TOKEN, GET_CURRENT_USER, LOG_OUT } from './types'
 
 
 export const fetchStocks = () => async dispatch => {
@@ -34,7 +34,16 @@ export const refreshToken = (refreshToken) => async dispatch => {
 
 export const getCurrentUser = (token) => async dispatch=>{
   const response = await users.get('/api/user/currentUser',
-  {headers:{ Authorization: `Bear ${token}`}})
-  
+  {headers:{ Authorization: `Bearer ${token}`}})
+
   dispatch({ type: GET_CURRENT_USER, payload: response.data})
+}
+
+export const logOut = (token, refreshToken) => async dispatch => {
+  const response = await users.post('/api/user/logout', refreshToken, { headers: { Authorization: `Bearer ${token}` } })
+  //refreshToken 要放在 headers的前面
+  localStorage.removeItem("accessToken")
+  localStorage.removeItem("refreshToken")
+
+  dispatch({ type: LOG_OUT, payload: response })
 }
