@@ -10,7 +10,7 @@ export default (state = {}, action) => {
       console.log("google user reducer:", action.payload)
       return { ...state, currentUser: action.payload };
     case LOCAL_LOGIN:
-      return { isLoggedin: true, currentUser: action.payload};
+      return { isLoggedin: true, user: action.payload};
       case REFRESH_TOKEN:
       return { ...state, currentUser: action.payload };
       case GET_CURRENT_USER:

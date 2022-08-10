@@ -40,7 +40,9 @@ class StockList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return { stocks: state.stocks }
+  return { 
+    stocks: state.stocks,
+   }
 }
 
 export default connect(mapStateToProps, { fetchStocks })(StockList);
