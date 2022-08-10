@@ -10,7 +10,7 @@ class Header extends React.Component {
   componentDidMount() {
     console.log('google componentDidMount')
     this.props.getGoogleUser()
-    this.props.getCurrentUser(localStorage.getItem('refreshToken'))
+    this.props.getCurrentUser(localStorage.getItem('accessToken'))
   }
 
   logout = () => {

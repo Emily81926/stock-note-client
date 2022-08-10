@@ -15,8 +15,8 @@ class SearchBar extends React.Component {
     } else { this.setState({ filteredData: newFilter }) }
   }
 
+
   render() {
-    const data = this.props.data
     const placeholder = this.props.placeholder
 
     return (
@@ -33,7 +33,6 @@ class SearchBar extends React.Component {
               </a>)
             })}
           </div>)}
-
       </div>)
   }
 
