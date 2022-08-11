@@ -13,3 +13,12 @@ export const getWatchlist = (token) => async dispatch => {
 
   dispatch({ type: GET_WATCHLIST, payload: response.data })
 }
+
+export const deleteFromWatchlist = (token, watchListId) => async dispatch => {
+  const response = await watchlist.delete('/', {
+    headers: { Authorization: `Bearer ${token}` },
+    data: watchListId
+  })
+
+  dispatch({ type: DELETE_WATCHLIST, payload: response })
+}
