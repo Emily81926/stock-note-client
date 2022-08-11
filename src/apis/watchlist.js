@@ -1,7 +1,40 @@
+import { useSelector, useDispatch } from "react-redux";
+import jwt_decode from 'jwt-decode'
+import { refreshToken } from '../actions/index'
 import axios from "axios";
 const BASE_URL = 'http://localhost:3001/api/watchlist'
+
 
 
 export default axios.create({
   baseURL: BASE_URL
 });
+
+const axiosWatchlist = axios.create({
+  baseURL: BASE_URL
+});
+
+// //傳遞給action
+// const dispatch = useDispatch()
+// //取得指定的reducer
+// const user = useSelector(state => state.user)
+
+// //當access token過期時，自動呼叫refreshToken function
+// export const axiosJWT = () => {
+//   axiosWatchlist.interceptors.request.use(async (config) => {
+//     let currentDate = new Date();
+//     const decodedToken = jwt_decode(localStorage.accessToken)
+//     console.log(decodedToken)
+//     if (decodedToken.exp * 1000 < currentDate.getTime()) {
+//       dispatch(refreshToken(localStorage.refreshToken))
+//       config.headers["authorization"] = `Bearer ${user.currentUser.accessToken}`
+//     }
+//     return config;
+//   },
+//     (error) => {
+//       return Promise.reject(error);
+//     }
+//   );
+// }
+
+
