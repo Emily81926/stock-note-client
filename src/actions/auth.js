@@ -20,9 +20,10 @@ export const getGoogleUser = () => async dispatch => {
   })
 
   if (response.request.status === 200) { 
-    localStorage.setItem("token", response.data.user.token)
+    localStorage.setItem("accessToken", response.data.user.accessToken)
+    localStorage.setItem("refreshToken", response.data.user.refreshToken)
     console.log('google setItem')
-    console.log('google token:', response.data.user.token )}
+    console.log('google token:', response.data )}
 
   dispatch({ type: GET_GOOGLE_USER, payload: response.data.user })
 }

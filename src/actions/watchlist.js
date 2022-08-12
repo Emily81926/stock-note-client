@@ -1,6 +1,6 @@
 import watchlist from "../apis/watchlist"
 import { ADD_TO_WATCHLIST, GET_WATCHLIST, DELETE_WATCHLIST } from "./types"
-//import axiosJWT from "../apis/watchlist"
+// import axiosJWT from "../apis/watchlist"
 
 
 export const addToWatchlist = (token, stock) => async dispatch => {
