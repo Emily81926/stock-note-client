@@ -10,7 +10,7 @@ class Header extends React.Component {
   componentDidMount() {
     console.log('google componentDidMount')
     if (!localStorage.getItem('accessToken')) { return this.props.getGoogleUser() }
-   
+
     this.props.getCurrentUser(localStorage.getItem('accessToken'))
   }
 
@@ -24,27 +24,31 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div className="ui secondary pointing menu">
-        <Link to="/" className="item">
-          BOSVA
-        </Link>
-        <div className="right menu">
-          {this.props.currentUser.currentUser ?
-            (<div>
-              <Link to="/watchlist"  >
-                watchList
-              </Link>
-              <p>{this.props.currentUser.currentUser.name}</p>
-              <button onClick={this.logout}>
-                logout
-              </button>
-            </div>
-            )
-            :
-            (<Link to="/signin">
-              signin
-            </Link>)}
+      <div className="ui fixed borderless teal inverted huge menu">
+        <div className="ui container grid">
+          <Link to="/" className="ui medium header item">
+            BOSVA
+          </Link>
+          <div className="right menu">
+            {this.props.currentUser.currentUser ?
+              (
+                <React.Fragment>
+                  <Link to="/watchlist" className="ui item">Watchlist</Link>
+                  <Link to="/" className="ui item">{this.props.currentUser.currentUser.name}</Link>
+                  <div className="item">
+                    <button className="ui mini red button" onClick={this.logout}>
+                      Log Out
+                    </button>
+                  </div>
+                  
+                </React.Fragment>
+              )
+              :
+              (<Link to="/signin" className="ui medium header item">
+                Sign In
+              </Link>)}
 
+          </div>
         </div>
       </div>
     );

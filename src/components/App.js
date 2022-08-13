@@ -12,17 +12,19 @@ import Header from './Header'
 
 const App = () => {
   return (
-  <div className='ui container'>
-      <BrowserRouter >
-        <Header/>
-        <Route path="/" exact component={StockList}/>
+    <BrowserRouter >
+      <Header />
+
+      <div className='ui container'>
+        <Route path="/" exact component={StockList} />
         <Route path="/watchlist" exact component={StockWatchlist} />
         <Route path="/stocks/:symbol" exact component={StockDetail} />
         <Route path="/signin" exact component={UserSignin} />
         <Route path="/signup" exact component={UserSignup} />
-      </BrowserRouter>
-    </div>
-    ); 
+
+      </div>
+    </BrowserRouter>
+  );
 };
 
 export default App;
