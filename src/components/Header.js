@@ -24,7 +24,8 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div className="ui fixed borderless teal inverted huge menu">
+      <div className="ui borderless fixed teal inverted huge menu">
+      {/* <div className="ui borderless teal inverted menu"> */}
         <div className="ui container grid">
           <Link to="/" className="ui medium header item">
             BOSVA

@@ -14,15 +14,11 @@ const App = () => {
   return (
     <BrowserRouter >
       <Header />
-
-      <div className='ui container'>
         <Route path="/" exact component={StockList} />
         <Route path="/watchlist" exact component={StockWatchlist} />
         <Route path="/stocks/:symbol" exact component={StockDetail} />
         <Route path="/signin" exact component={UserSignin} />
         <Route path="/signup" exact component={UserSignup} />
-
-      </div>
     </BrowserRouter>
   );
 };
