@@ -12,7 +12,10 @@ class GoogleAuth extends React.Component {
 
   render() {
     return (
-      <button className="loginbutton google" onClick={this.googleLogin} >Google Login</button>
+      <button className="ui google plus fluid large button" type="submit" style={{ width: '90%' }} onClick={this.googleLogin} >
+        <i class="google plus icon"></i>
+        Google Login
+        </button>
     )
   }
 }

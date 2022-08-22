@@ -8,7 +8,7 @@ import { signIn } from '../../actions/index'
 class UserSignin extends React.Component {
 
 
- 
+
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -29,30 +29,61 @@ class UserSignin extends React.Component {
       </div>
     );
   }
-  onSubmit = async(formValues) => {
+
+  onSubmit = async (formValues) => {
     await this.props.signIn(formValues)
-    this.props.history.push('/')  
+    this.props.history.push('/')
   }
 
   SigninForm() {
+    const segment = {
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+    const signinGrid = {
+      width: '50%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'column',
+    }
+
     return (
-      <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error" >
-        <Field name="email" component={this.renderInput} label="Enter Email" />
-        <Field name="password" component={this.renderInput} label="Enter Password" />
-        <button className="ui button" type="submit">Submit</button>
+      <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui large form error" style={segment}>
+        <div className="ui stacked segment" style={signinGrid}>
+          <div className="ui field" style={{ width: '90%' }}>
+            <Field name="email" component={this.renderInput} label="Enter Email" />
+            <Field name="password" component={this.renderInput} label="Enter Password" />
+          </div>
+          <button className="ui fluid large teal button" type="submit" style={{ width: '90%' }}>Submit</button>
+          <div className="ui"> or </div>
+          <GoogleAuth />
+        </div>
       </form>
     )
   }
 
   render() {
+    const message = {
+      margin: 'auto',
+      width: '50%'
+    }
     return (
-      <div className="ui">
-        <Link to="/" className="button">
-        </Link>
-        <div className="signin table">
-          {this.SigninForm()}
+      <div className="ui middle aligned center aligned grid" style={{ paddingTop: '120px' }} >
+        <div className="column">
+          <h2 className="ui teal header">Log-in to your account</h2>
+          <div className="signin table">
+            {this.SigninForm()}
+          </div>
+          <div className="column" style={{ marginTop: '20px' }}>
+            <div className="ui message" style={message}>
+              <span className="message" style={{ paddingRight: '5px' }}> New to us? </span>
+              <Link to="/signup">Sign Up</Link>
+            </div>
+          </div>
         </div>
-        <GoogleAuth />
       </div>
     )
   }
