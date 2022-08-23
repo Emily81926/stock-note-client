@@ -14,11 +14,13 @@ class Header extends React.Component {
     this.props.getCurrentUser(localStorage.getItem('accessToken'))
   }
 
-  logout = () => {
+  logout = async() => {
     const accessToken = localStorage.getItem('accessToken')
     const refreshToken = localStorage.getItem('refreshToken')
 
-    this.props.logOut(accessToken, { token: refreshToken })
+    await this.props.logOut(accessToken, { token: refreshToken })
+    window.location.href ='http://localhost:3000';
+    
   }
 
 
