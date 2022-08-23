@@ -5,6 +5,15 @@ import { Link } from 'react-router-dom'
 import { signUp } from '../../actions/index'
 
 class UserSignup extends React.Component {
+
+  // constructor() {
+  //   super();
+  //   //一開始密碼顯示為看不到
+  //   this.state = {
+  //     showPassword: false,
+  //   }
+  // }
+
   renderError({ error, touched }) {
     if (touched && error) {
       return (
@@ -14,7 +23,7 @@ class UserSignup extends React.Component {
       )
     }
   }
-
+  //用在username跟email
   renderInput = ({ input, label, meta }) => {
     const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
@@ -26,11 +35,27 @@ class UserSignup extends React.Component {
     );
   }
 
+
+  //用在password跟confirmedpassword
+  renderPassword = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <input {...input} type="password" autoComplete="off" />
+        {this.renderError(meta)}
+      </div>
+    );
+  }
+
   onSubmit = formValues => {
     this.props.signUp(formValues)
   }
 
   render() {
+    //看一下show password的情況
+    //console.warn(this.state.showPassword)
+
     const segment = {
       width: '100%',
       display: 'flex',
@@ -61,8 +86,8 @@ class UserSignup extends React.Component {
                 <div className="ui field" style={{ width: '90%' }}>
                   <Field name="name" component={this.renderInput} label="Enter Username" />
                   <Field name="email" component={this.renderInput} label="Enter Email" />
-                  <Field name="password" component={this.renderInput} label="Enter Password" />
-                  <Field name="confirmedPassword" component={this.renderInput} label="Enter Confirmed Password" />
+                  <Field name="password" component={this.renderPassword} label="Enter Password" />
+                  <Field name="confirmedPassword" component={this.renderPassword} label="Enter Confirmed Password" />
                 </div>
                 <button className="ui fluid large teal button" type="submit" style={{ width: '90%' }}>Submit</button>
               </div>

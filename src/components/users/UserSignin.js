@@ -7,7 +7,7 @@ import { signIn } from '../../actions/index'
 
 class UserSignin extends React.Component {
 
-
+  
 
   renderError({ error, touched }) {
     if (touched && error) {
@@ -25,6 +25,18 @@ class UserSignin extends React.Component {
       <div className={className}>
         <label>{label}</label>
         <input {...input} type="text" autoComplete="off" />
+        {this.renderError(meta)}
+      </div>
+    );
+  }
+
+  //用在password跟confirmedpassword
+  renderPassword = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <input {...input} type="password" autoComplete="off" />
         {this.renderError(meta)}
       </div>
     );
@@ -55,7 +67,7 @@ class UserSignin extends React.Component {
         <div className="ui stacked segment" style={signinGrid}>
           <div className="ui field" style={{ width: '90%' }}>
             <Field name="email" component={this.renderInput} label="Enter Email" />
-            <Field name="password" component={this.renderInput} label="Enter Password" />
+            <Field name="password" component={this.renderPassword} label="Enter Password" />
           </div>
           <button className="ui fluid large teal button" type="submit" style={{ width: '90%' }}>Submit</button>
           <div className="ui"> or </div>
