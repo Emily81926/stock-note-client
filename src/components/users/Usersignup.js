@@ -48,8 +48,9 @@ class UserSignup extends React.Component {
     );
   }
 
-  onSubmit = formValues => {
-    this.props.signUp(formValues)
+  onSubmit = async(formValues) => {
+    await this.props.signUp(formValues)
+    this.props.history.push('/signin')
   }
 
   render() {
