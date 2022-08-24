@@ -2,7 +2,9 @@ import React from "react";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { getGoogleUser } from '../actions/auth'
+import { fetchStocks } from '../actions/index'
 import { getCurrentUser, logOut } from '../actions/index'
+import Searching from "./stocks/Search"
 
 
 class Header extends React.Component {
@@ -12,6 +14,7 @@ class Header extends React.Component {
     if (!localStorage.getItem('accessToken')) { return this.props.getGoogleUser() }
 
     this.props.getCurrentUser(localStorage.getItem('accessToken'))
+    this.props.fetchStocks()
   }
 
   logout = async() => {
@@ -26,13 +29,16 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div className="ui borderless fixed teal inverted huge menu">
+      <div className="ui borderless fixed teal inverted massive menu">
       {/* <div className="ui borderless teal inverted menu"> */}
         <div className="ui container grid">
           <Link to="/" className="ui medium header item">
             BOSVA
           </Link>
           <div className="right menu">
+            <div className="searchbar" style={{margin: 'auto'}}>
+            <Searching placeholder="Enter company name" data={this.props.stocks} />
+            </div>
             {this.props.currentUser.currentUser ?
               (
                 <React.Fragment>
@@ -60,10 +66,10 @@ class Header extends React.Component {
 
 const mapStateToProps = state => {
   console.log("google mapStateToProps", state.user)
-  return { currentUser: state.user }
+  return { currentUser: state.user, stocks: state.stocks, }
 
 }
 
-export default connect(mapStateToProps, { getGoogleUser, logOut, getCurrentUser })(Header);
+export default connect(mapStateToProps, { getGoogleUser, logOut, getCurrentUser, fetchStocks })(Header);
 
 
