@@ -30,7 +30,9 @@ class IndicatorData extends React.Component {
           marker: { color: 'red' },
         },
       ]}
-      layout={{ width: 720, height: 440, title: 'Stock Chart' }}
+      style={{ width: '80%', height: '80%', margin: 'auto'}}
+      layout={{ autosize: true, title: 'Stock Chart' }}
+      // // layout={{ width: 720, height: 440, title: 'Stock Chart' }}
     />)
 
   }

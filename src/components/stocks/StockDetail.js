@@ -19,7 +19,7 @@ class StockDetail extends React.Component {
   passSymbol = () => {
     return this.props.match.params.symbol
   }
- 
+
   //在watchlist中查找此股票是否在裡面
   foundList = () => {
     const foundList = Array.from(this.props.watchlist).filter(list => list['symbol'] === this.props.match.params.symbol)
@@ -42,7 +42,7 @@ class StockDetail extends React.Component {
     const watchListId = list[0]["_id"]
     console.log(list)
     console.log(watchListId)
-    this.props.deleteFromWatchlist(accessToken, {  watchListId  })
+    this.props.deleteFromWatchlist(accessToken, { watchListId })
   }
 
   renderProfile() {
@@ -53,7 +53,7 @@ class StockDetail extends React.Component {
 
 
     return (
-      <div className="ui card" key={stockProfile.symbol}>
+      <div className="ui fluid card" key={stockProfile.symbol}>
         <div className="content">
           <div className="header">{stockProfile.companyName}</div>
         </div>
@@ -63,43 +63,45 @@ class StockDetail extends React.Component {
             <div className="event">
               <div className="content">
                 <div className="summary">
-                  website: {stockProfile.website}
+                  <h4>website</h4>
+                  <a href={stockProfile.website}> {stockProfile.website} </a>
                 </div>
               </div>
             </div>
-            <div className="event">
+            <div className="event" style={{ marginTop: '10px' }}>
               <div className="content">
-                <div className="summary">
-
-                </div>
-              </div>
-            </div>
-            <div className="event">
-              <div className="content">
-                <div className="summary">
-                  description: {stockProfile.description}
+                <div className="discription">
+                  <h4>discription</h4>
+                  <p>{stockProfile.description}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="extra content">
-          {foundList.length === 0 ?
-            <button className="ui button" onClick={this.addToWatchlist}>Add to watchlist</button> :
-            <button className="ui button" onClick={this.deleteFromWatchlist}>Delete from watchlist</button>}
-        </div>
+        {this.props.currentUser === undefined ? <div></div>
+          : (<div className="extra content">
+            {foundList.length === 0 ?
+              <button className="ui button" onClick={this.addToWatchlist}>Add to watchlist</button> :
+              <button className="ui button" onClick={this.deleteFromWatchlist}>Delete from watchlist</button>}
+          </div>)}
       </div>
     )
   };
 
+
   render() {
     return (
-      <div>
-        {this.renderProfile()}
-        <FinancialData symbol={this.passSymbol()} />
-        <IndicatorData symbol={this.passSymbol()} />
+      <div className="ui container" style={{ paddingTop: '100px', width: '90%', margin: 'auto' }}>
+        <div className="column" style={{ margin: 'auto auto 20px auto', width: '70%', textAligned: 'center' }}>
+          {this.renderProfile()}
+        </div>
+        <div className="column" >
+          <IndicatorData symbol={this.passSymbol()} />
+        </div>
+        <div className="column">
+          <FinancialData symbol={this.passSymbol()} />
+        </div>
       </div>
-
     )
   }
 };
