@@ -51,7 +51,7 @@ class FiancialData extends React.Component {
   renderInterestCoverage() {
     return Array.from(this.props.others).map(ic => {
       return (
-        <td style={textStyle}>{Math.round(ic.interestCoverage * 10)/ 10}</td>
+        <td style={textStyle}>{Math.round(ic.interestCoverage * 10) / 10}</td>
       )
     })
   }
@@ -59,7 +59,7 @@ class FiancialData extends React.Component {
   renderNetMargin() {
     return Array.from(this.props.others).map(net => {
       return (
-        <td style={textStyle}>{Math.round(net.netMargin * 1000) / 10 } %</td>
+        <td style={textStyle}>{Math.round(net.netMargin * 1000) / 10} %</td>
       )
     })
   }
@@ -75,14 +75,16 @@ class FiancialData extends React.Component {
   //需要修改成只要5個名額
   renderDividends() {
     if (!this.props.dividends[0]) {
-      return (<tr>
-        <td>dividends</td>
-        <td style={textStyle}> loading </td>
-        <td style={textStyle}>loading </td>
-        <td style={textStyle}> loading </td>
-        <td style={textStyle}> loading </td>
-        <td style={textStyle}> loading </td>
-      </tr>)
+      return (
+        <tr>
+          <td>dividends</td>
+          <td style={textStyle}> -- </td>
+          <td style={textStyle}> -- </td>
+          <td style={textStyle}> -- </td>
+          <td style={textStyle}> -- </td>
+          <td style={textStyle}> -- </td>
+        </tr>
+      )
     }
     return (
       <tr>

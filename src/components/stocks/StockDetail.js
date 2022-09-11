@@ -53,11 +53,11 @@ class StockDetail extends React.Component {
 
 
     return (
-      <div className="ui fluid card" key={stockProfile.symbol}>
+      <div className="ui fluid card" key={stockProfile.symbol} style={{ padding: '30px' }}>
         <div className="content">
           <div className="header">{stockProfile.companyName}</div>
         </div>
-        <div className="content">
+        <div className="content" >
           <h4 className="ui sub header">{stockProfile.sector}</h4>
           <div className="ui small feed">
             <div className="event">
@@ -72,7 +72,7 @@ class StockDetail extends React.Component {
               <div className="content">
                 <div className="discription">
                   <h4>discription</h4>
-                  <p>{stockProfile.description}</p>
+                  <p style={{ lineHeight: '25px'}}>{stockProfile.description}</p>
                 </div>
               </div>
             </div>
