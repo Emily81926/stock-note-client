@@ -2,6 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchFreeCashFlow, fetchROEInterestCoverageNetMargin, fetchDividends, fetchEarninPerShare } from "../../actions/getStock"
 
+const textStyle = {
+  textAlign: 'center'
+}
 
 class FiancialData extends React.Component {
 
@@ -22,7 +25,7 @@ class FiancialData extends React.Component {
     //要將this.props.others轉換成array
     return Array.from(this.props.others).map(date => {
       return (
-        <th>{date.date}</th>
+        <th style={textStyle}>{date.date}</th>
       )
     })
 
@@ -32,7 +35,7 @@ class FiancialData extends React.Component {
   renderEPS() {
     return Array.from(this.props.eps).map(eps => {
       return (
-        <td>{eps.eps}</td>
+        <td style={textStyle}>{eps.eps}</td>
       )
     })
   }
@@ -40,7 +43,7 @@ class FiancialData extends React.Component {
   renderFreeCashFlow() {
     return Array.from(this.props.freeCashFlow).map(cash => {
       return (
-        <td>{cash.freeCashFlow}</td>
+        <td style={textStyle}>{cash.freeCashFlow / 1000000}</td>
       )
     })
   }
@@ -48,7 +51,7 @@ class FiancialData extends React.Component {
   renderInterestCoverage() {
     return Array.from(this.props.others).map(ic => {
       return (
-        <td>{ic.interestCoverage}</td>
+        <td style={textStyle}>{Math.round(ic.interestCoverage * 10)/ 10}</td>
       )
     })
   }
@@ -56,7 +59,7 @@ class FiancialData extends React.Component {
   renderNetMargin() {
     return Array.from(this.props.others).map(net => {
       return (
-        <td>{net.netMargin}</td>
+        <td style={textStyle}>{Math.round(net.netMargin * 1000) / 10 } %</td>
       )
     })
   }
@@ -64,7 +67,7 @@ class FiancialData extends React.Component {
   renderROE() {
     return Array.from(this.props.others).map(roe => {
       return (
-        <td>{roe.returnOnEquity}</td>
+        <td style={textStyle}>{Math.round(roe.returnOnEquity * 1000) / 10} %</td>
       )
     })
   }
@@ -74,20 +77,21 @@ class FiancialData extends React.Component {
     if (!this.props.dividends[0]) {
       return (<tr>
         <td>dividends</td>
-        <td> loading </td>
-        <td>loading </td>
-        <td> loading </td>
-        <td> loading </td>
-        <td> loading </td>
-      </tr>)}
+        <td style={textStyle}> loading </td>
+        <td style={textStyle}>loading </td>
+        <td style={textStyle}> loading </td>
+        <td style={textStyle}> loading </td>
+        <td style={textStyle}> loading </td>
+      </tr>)
+    }
     return (
       <tr>
         <td>dividends</td>
-        <td>{this.props.dividends[0].dividends} </td>
-        <td>{this.props.dividends[1].dividends} </td>
-        <td> {this.props.dividends[2].dividends}</td>
-        <td> {this.props.dividends[3].dividends}</td>
-        <td> {this.props.dividends[4].dividends} </td>
+        <td style={textStyle}>{this.props.dividends[0].dividends / 1000000} </td>
+        <td style={textStyle}>{this.props.dividends[1].dividends / 1000000} </td>
+        <td style={textStyle}> {this.props.dividends[2].dividends / 1000000}</td>
+        <td style={textStyle}> {this.props.dividends[3].dividends / 1000000}</td>
+        <td style={textStyle}> {this.props.dividends[4].dividends / 1000000} </td>
       </tr>
     )
 
@@ -104,29 +108,29 @@ class FiancialData extends React.Component {
       <table className="ui fixed single line celled table" key={this.props.symbol}>
         <thead>
           <tr>
-            <th>date</th>
+            <th>USD, in millions</th>
             {this.renderDate()}
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>earning per share</td>
+            <td>Earning per Share</td>
             {this.renderEPS()}
           </tr>
           <tr>
-            <td>free cash flow</td>
+            <td>Free Cash Flow</td>
             {this.renderFreeCashFlow()}
           </tr>
           <tr>
-            <td>interest coverage</td>
+            <td>Interest Coverage</td>
             {this.renderInterestCoverage()}
           </tr>
           <tr>
-            <td>net margin</td>
+            <td>Net Margin</td>
             {this.renderNetMargin()}
           </tr>
           <tr>
-            <td>return on equity</td>
+            <td>Return on Equity</td>
             {this.renderROE()}
           </tr>
           {this.renderDividends()}
@@ -147,5 +151,3 @@ const mapStateToProps = state => {
 
 //需要思考如何同時放入不同的props
 export default connect(mapStateToProps, { fetchFreeCashFlow, fetchROEInterestCoverageNetMargin, fetchDividends, fetchEarninPerShare })(FiancialData);
-
-//需要在reducer上面寫邏輯
