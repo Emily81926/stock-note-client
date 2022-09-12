@@ -33,6 +33,17 @@ class FiancialData extends React.Component {
 
 
   renderEPS() {
+    if (!this.props.eps[0]) {
+      return (
+        <React.Fragment>
+          <td style={textStyle}> -- </td>
+          <td style={textStyle}> -- </td>
+          <td style={textStyle}> -- </td>
+          <td style={textStyle}> -- </td>
+          <td style={textStyle}> -- </td>
+        </React.Fragment>    
+      )
+    }
     return Array.from(this.props.eps).map(eps => {
       return (
         <td style={textStyle}>{eps.eps}</td>
@@ -41,6 +52,17 @@ class FiancialData extends React.Component {
   }
 
   renderFreeCashFlow() {
+    if (!this.props.freeCashFlow[0]) {
+      return (
+        <React.Fragment>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+        </React.Fragment>
+      )
+    }
     return Array.from(this.props.freeCashFlow).map(cash => {
       return (
         <td style={textStyle}>{cash.freeCashFlow / 1000000}</td>
@@ -49,6 +71,17 @@ class FiancialData extends React.Component {
   }
 
   renderInterestCoverage() {
+    if (!this.props.others[0]) {
+      return (
+        <React.Fragment>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+        </React.Fragment>
+      )
+    }
     return Array.from(this.props.others).map(ic => {
       return (
         <td style={textStyle}>{Math.round(ic.interestCoverage * 10) / 10}</td>
@@ -57,6 +90,17 @@ class FiancialData extends React.Component {
   }
 
   renderNetMargin() {
+    if (!this.props.others[0]) {
+      return (
+        <React.Fragment>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+        </React.Fragment>
+      )
+    }
     return Array.from(this.props.others).map(net => {
       return (
         <td style={textStyle}>{Math.round(net.netMargin * 1000) / 10} %</td>
@@ -65,6 +109,17 @@ class FiancialData extends React.Component {
   }
 
   renderROE() {
+    if (!this.props.others[0]) {
+      return (
+        <React.Fragment>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+          <td style={textStyle}> loading </td>
+        </React.Fragment>
+      )
+    }
     return Array.from(this.props.others).map(roe => {
       return (
         <td style={textStyle}>{Math.round(roe.returnOnEquity * 1000) / 10} %</td>
@@ -89,14 +144,25 @@ class FiancialData extends React.Component {
     return (
       <tr>
         <td>dividends</td>
-        <td style={textStyle}>{this.props.dividends[0].dividends / 1000000} </td>
-        <td style={textStyle}>{this.props.dividends[1].dividends / 1000000} </td>
-        <td style={textStyle}> {this.props.dividends[2].dividends / 1000000}</td>
-        <td style={textStyle}> {this.props.dividends[3].dividends / 1000000}</td>
-        <td style={textStyle}> {this.props.dividends[4].dividends / 1000000} </td>
+        {isNaN(this.props.dividends[0].dividends / 1000000)  ? (
+          <React.Fragment>
+            <td style={textStyle}> -- </td>
+            <td style={textStyle}> -- </td>
+            <td style={textStyle}> -- </td>
+            <td style={textStyle}> -- </td>
+            <td style={textStyle}> -- </td>
+          </React.Fragment>
+        ) :
+          (<React.Fragment>
+            <td style={textStyle}>{this.props.dividends[0].dividends / 1000000} </td>
+            <td style={textStyle}>{this.props.dividends[1].dividends / 1000000} </td>
+            <td style={textStyle}> {this.props.dividends[2].dividends / 1000000}</td>
+            <td style={textStyle}> {this.props.dividends[3].dividends / 1000000}</td>
+            <td style={textStyle}> {this.props.dividends[4].dividends / 1000000} </td>
+          </React.Fragment>)}
+
       </tr>
     )
-
   }
 
 
