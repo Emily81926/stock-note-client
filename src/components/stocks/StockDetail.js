@@ -27,13 +27,19 @@ class StockDetail extends React.Component {
     return foundList
   }
 
-  addToWatchlist = () => {
+  //加入watchlist之後，馬上reload watchlist，才能夠即時在watchlist找到剛加入的資料
+  reloadWatchlist = async() => {
+    await this.props.getWatchlist(localStorage.getItem('accessToken'))
+  }
+
+  addToWatchlist = async() => {
     const accessToken = localStorage.getItem('accessToken')
     const userId = this.props.currentUser._id
     const { symbol, companyName, sector, price } = this.props.stock
     const stock = { symbol, companyName, price, sector, userId }
 
-    this.props.addToWatchlist(accessToken, stock)
+   await this.props.addToWatchlist(accessToken, stock)
+   this.reloadWatchlist()
   }
 
   deleteFromWatchlist = () => {
@@ -49,8 +55,8 @@ class StockDetail extends React.Component {
     const stockProfile = this.props.stock
     if (!stockProfile) { return <h1>Loading</h1>; }
 
-    const foundList = Array.from(this.props.watchlist).filter(list => list['symbol'] === this.props.match.params.symbol)
-
+    // const foundList = Array.from(this.props.watchlist).filter(list => list['symbol'] === this.props.match.params.symbol)
+   
 
     return (
       <div className="ui fluid card" key={stockProfile.symbol} style={{ padding: '30px' }}>
@@ -80,7 +86,7 @@ class StockDetail extends React.Component {
         </div>
         {this.props.currentUser === undefined ? <div></div>
           : (<div className="extra content">
-            {foundList.length === 0 ?
+            {this.foundList().length === 0 ?
               <button className="ui button" onClick={this.addToWatchlist}>Add to watchlist</button> :
               <button className="ui button" onClick={this.deleteFromWatchlist}>Delete from watchlist</button>}
           </div>)}
