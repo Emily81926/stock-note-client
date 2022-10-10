@@ -2,14 +2,14 @@ import { GET_GOOGLE_USER} from './types';
 import axios from "axios";
 
 export const googleLogin = () => async dispatch => {
-  window.open('http://localhost:3001/auth/google', "_self")
+  window.open('https://stock-note.onrender.com/auth/google', "_self")
 }
 
 //如果成功登入，就可以來提取google的使用者資料
 export const getGoogleUser = () => async dispatch => {
  const response = await axios({
     method: 'GET',
-    url: 'http://localhost:3001/auth/login/success',
+    url: 'https://stock-note.onrender.com/auth/login/success',
     responseType: 'json',
     withCredentials: true,
     headers: {
