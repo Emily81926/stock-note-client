@@ -5,7 +5,7 @@ import { getGoogleUser } from '../../actions/auth'
 class GoogleAuth extends React.Component {
 
   googleLogin = () => {
-    window.open('http://localhost:3001/auth/google', "_self")
+    window.open('https://stock-note.onrender.com/auth/google', "_self")
     //this.props.getGoogleUser()
   }
 
