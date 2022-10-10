@@ -60,7 +60,7 @@ class StockList extends React.Component {
     }
 
     const imageStyle = {
-      backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url(/coverPhoto.jpeg)',
+      backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),url(/puzzle-cover-photo.jpeg)',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -68,19 +68,21 @@ class StockList extends React.Component {
       backgroudPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
-      opacity: '0.3'
+      opacity: '0.5'
     }
 
     const text = {
       position: 'absolute',
-      top: '70px',
-      color: '#fff',
-      margin: '30px',
+      top: '100px',
+      right: '5px',
+      color: '#F8F8FF',
+      margin: '20px',
       textAlign: 'justify-all',
+      width: '35%',
     }
 
     const h3 = {
-      fontSize: '30px',
+      fontSize: '40px',
       fontWeight: '500',
       textAlign: 'left',
       fontStyle: 'italic'

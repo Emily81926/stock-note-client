@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode'
 import { refreshToken } from '../actions/index'
 import axios from "axios";
 const BASE_URL = 'http://localhost:3001/api/watchlist'
+// const BASE_URL = 'https://stock-note.onrender.com/api/watchlist'
 
 
 export default axios.create({

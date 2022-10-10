@@ -33,6 +33,7 @@ export const refreshToken = (refreshToken) => async dispatch => {
 }
 
 export const getCurrentUser = (token) => async dispatch=>{
+  console.log('get current user action!!')
   const response = await users.get('/api/user/currentUser',
   {headers:{ Authorization: `Bearer ${token}`}})
 
