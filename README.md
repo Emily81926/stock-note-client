@@ -2,8 +2,8 @@
 
 The project is made with React and uses the API provided by [stock-note project](https://github.com/Emily81926/stock-note).
 
-- **template of:** react
-- **semantic-ui:** 
+- **react-dom**
+- **semantic-ui** 
 
 ## Live DEMO
 Please click [here](https://sprightly-melba-edee81.netlify.app/) to go to DEMO website.
