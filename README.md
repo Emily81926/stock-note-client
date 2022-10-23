@@ -47,7 +47,7 @@ npm run build
 ```
 
 ## Test Account
-* user account： test1@example.com  
+* user account： test1@email.com  
   user password： 12345678
 
 
