@@ -6,7 +6,7 @@ The project is made with React and uses the API provided by [stock-note project]
 - **semantic-ui** 
 
 ## Live DEMO
-Please click [here](https://sprightly-melba-edee81.netlify.app/) to go to DEMO website.
+Please click [here](https://stock-note-bosva.netlify.app/) to go to DEMO website.
 
 ## Feature
 
