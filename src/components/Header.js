@@ -22,7 +22,7 @@ class Header extends React.Component {
     const refreshToken = localStorage.getItem("refreshToken");
 
     await this.props.logOut(accessToken, { token: refreshToken });
-    window.location.href = "https://stock-note-bosva.netlify.app/";
+    window.location.href = "https://sprightly-melba-edee81.netlify.app";
   };
 
   render() {
