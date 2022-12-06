@@ -6,7 +6,7 @@ The project is made with React and uses the API provided by [stock-note project]
 - **semantic-ui** 
 
 ## Live DEMO
-Please click [here](https://sprightly-melba-edee81.netlify.app/) to go to DEMO website.
+Please click [here](https://stock-note-bosva.netlify.app/) to go to DEMO website.
 
 ## Feature
 
@@ -47,7 +47,7 @@ npm run build
 ```
 
 ## Test Account
-* user account： test1@example.com  
+* user account： test1@email.com  
   user password： 12345678
 
 
