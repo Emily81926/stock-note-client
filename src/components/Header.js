@@ -21,7 +21,7 @@ class Header extends React.Component {
     const refreshToken = localStorage.getItem("refreshToken");
 
     await this.props.logOut(accessToken, { token: refreshToken });
-    window.location.href = process.env.LOGOOUT_REDIRECT_URL;
+    window.location.href = "https://stock-note-client.onrender.com";
   };
 
   render() {
