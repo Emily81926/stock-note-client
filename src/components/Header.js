@@ -8,7 +8,6 @@ import Searching from "./stocks/Search";
 
 class Header extends React.Component {
   componentDidMount() {
-    console.log("google componentDidMount");
     if (!localStorage.getItem("accessToken")) {
       return this.props.getGoogleUser();
     }
@@ -22,7 +21,7 @@ class Header extends React.Component {
     const refreshToken = localStorage.getItem("refreshToken");
 
     await this.props.logOut(accessToken, { token: refreshToken });
-    window.location.href = "https://sprightly-melba-edee81.netlify.app";
+    window.location.href = process.env.LOGOOUT_REDIRECT_URL;
   };
 
   render() {
@@ -68,7 +67,6 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("google mapStateToProps", state.user);
   return { currentUser: state.user, stocks: state.stocks };
 };
 
