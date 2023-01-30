@@ -36,7 +36,7 @@ export default class Searching extends Component {
     const { isLoading, value, results } = this.state
     //加上客製化的render
     const resRender = ({ symbol, companyName, price }) => (
-      <Link to={`/stocks/${symbol}`} target="_blank">
+      <Link to={`/stocks/${symbol}`} target="_self" rel='nonreferrer'>
         <div className="content" style={{ padding: 'auto' }} ariaChecked="false" ariaSelected="true">
           <div className="center aligned header">
             <h3>{companyName}</h3>
